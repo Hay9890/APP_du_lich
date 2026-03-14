@@ -1,12 +1,14 @@
+import os
+from dotenv import load_dotenv
 import smtplib
 from email.message import EmailMessage
 
+load_dotenv()
 
-
-SMTP_EMAIL ="nttruongdz111@gmail.com"
-SMTP_PASSWORD ="brllrlnjncnhihhc"
-SMTP_HOST ="smtp.gmail.com"
-SMTP_PORT = 587
+SMTP_EMAIL = os.getenv("SMTP_EMAIL")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
+SMTP_HOST = os.getenv("SMTP_HOST")
+SMTP_PORT = int(os.getenv("SMTP_PORT"))
 
 
 def send_otp_email(to_email: str, otp: str):
@@ -30,4 +32,4 @@ def send_otp_email(to_email: str, otp: str):
             server.login(SMTP_EMAIL, SMTP_PASSWORD)
             server.send_message(msg)
     except Exception as e:
-        print("❌ Failed to send email:", e)
+        print("Failed to send email:", e)

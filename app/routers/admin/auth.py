@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from app.models.admin import AdminLogin, AdminResponse
-from app.controllers.admin_auth_controller import admin_login_logic
-from app.dependencies import get_user_collection
+from app.controllers.admin.admin_auth_controller import admin_login_logic
+from dependencies import get_user_collection
 
 router = APIRouter(prefix="/admin/auth", tags=["Admin Auth"])
 

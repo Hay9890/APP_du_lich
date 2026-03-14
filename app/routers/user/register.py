@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, status
 
-from app.dependencies import get_user_collection
+from dependencies import get_user_collection
 from app.models.user import UserRegister, UserResponse
-from app.controllers.user import register_user_controller
+from app.controllers.user.user import register_user_controller
 
 router = APIRouter(prefix="/auth", tags=["User Auth"])
 

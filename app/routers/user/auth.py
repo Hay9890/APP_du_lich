@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
-from app.dependencies import get_user_collection
+from dependencies import get_user_collection
 from app.models.auth import UserLogin, TokenResponse
-from app.controllers.user_auth import login_user_logic
+from app.controllers.user.user_auth import login_user_logic
 
 router = APIRouter(prefix="/auth", tags=["User Auth"])
 

@@ -19,7 +19,7 @@ async def register_user_controller(
     user: UserRegister,
     users_col
 ) -> UserResponse:
-    # check email tồn tại
+
     existing_user = await users_col.find_one({"email": user.email})
     if existing_user:
         raise HTTPException(
@@ -33,7 +33,7 @@ async def register_user_controller(
         hashed_password=hash_password(user.password)
     )
 
-    result = await users_col.insert_one(user_db.dict())
+    result = await users_col.insert_one(user_db.model_dump())
 
     return UserResponse(
         id=str(result.inserted_id),

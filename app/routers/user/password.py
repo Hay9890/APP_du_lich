@@ -3,13 +3,13 @@ from app.models.password_reset import (
     ForgotPasswordRequest,
     ResetPasswordRequest
 )
-from app.controllers.user_password_controller import (
+from app.controllers.user.user_password_controller import (
     forgot_password_logic,
     reset_password_logic
 )
-from app.dependencies import get_user_collection, get_otp_collection
+from dependencies import get_user_collection, get_otp_collection
 
-router = APIRouter(prefix="/password", tags=["User Password"])
+router = APIRouter(prefix="/auth", tags=["User Password"])
 
 
 @router.post("/forgot")
