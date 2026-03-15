@@ -3,24 +3,23 @@ from passlib.context import CryptContext
 
 from app.models.user import UserRegister, UserInDB, UserResponse
 
-# cấu hình bcrypt
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# dùng Argon2 thay vì bcrypt
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 
 def hash_password(password: str) -> str:
     """
-    Hash password bằng bcrypt
-    bcrypt chỉ hỗ trợ tối đa 72 ký tự
+    Hash password bằng Argon2
+    Không bị giới hạn 72 bytes như bcrypt
     """
-    safe_password = password[:72]
-    return pwd_context.hash(safe_password)
+    return pwd_context.hash(password)
 
 
 def verify_password(password: str, hashed_password: str) -> bool:
     """
     Dùng cho login sau này
     """
-    return pwd_context.verify(password[:72], hashed_password)
+    return pwd_context.verify(password, hashed_password)
 
 
 async def register_user_controller(
@@ -28,7 +27,7 @@ async def register_user_controller(
     users_col
 ) -> UserResponse:
 
-    # kiểm tra email đã tồn tại
+    # kiểm tra email tồn tại
     existing_user = await users_col.find_one({"email": user.email})
 
     if existing_user:
@@ -46,7 +45,7 @@ async def register_user_controller(
 
     result = await users_col.insert_one(user_db.model_dump())
 
-    # trả response cho client
+    # trả response
     return UserResponse(
         id=str(result.inserted_id),
         username=user.username,
