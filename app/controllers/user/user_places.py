@@ -13,7 +13,7 @@ def serialize(place):
         "description": place.get("description"),
         "address": place["address"],
         "city": place["city"],
-        "thumbnail": BASE_IMAGE_URL + place["thumbnail"],
+        "thumbnail": (BASE_IMAGE_URL or "") + place["thumbnail"],
         "created_at": place["created_at"]
     }
 

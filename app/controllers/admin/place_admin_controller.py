@@ -16,6 +16,22 @@ def serialize(place):
         "address": place["address"],
         "city": place["city"],
         "category_id": place["category_id"],
-        "thumbnail": BASE_IMAGE_URL + place["thumbnail"],
+        "thumbnail": (BASE_IMAGE_URL or "") + place["thumbnail"],
         "created_at": place["created_at"]
     }
+
+async def create_place(data: PlaceCreate, collection):
+    place = {
+        "name": data.name,
+        "description": data.description,
+        "address": data.address,
+        "city": data.city,
+        "category_id": data.category_id,
+        "thumbnail": data.thumbnail,
+        "created_at": datetime.utcnow()
+    }
+
+    result = await collection.insert_one(place)
+    place["_id"] = result.inserted_id
+
+    return serialize(place)
