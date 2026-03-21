@@ -3,7 +3,7 @@ from passlib.context import CryptContext
 
 from app.models.user import UserRegister, UserInDB, UserResponse
 
-# dùng Argon2 thay vì bcrypt
+
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 

@@ -15,3 +15,5 @@ def get_place_collection():
     return db["places"]
 def get_category_collection():
     return db["categories"]
+def get_favorite_collection():
+    return db.favorites
