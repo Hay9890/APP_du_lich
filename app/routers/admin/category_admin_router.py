@@ -13,3 +13,8 @@ async def create_category(
     collection=Depends(get_category_collection)
 ):
     return await category_ctrl.create_category(data, collection)
+@router.get("/")
+async def get_categories(
+    collection=Depends(get_category_collection)
+):
+    return await category_ctrl.get_all_categories(collection)

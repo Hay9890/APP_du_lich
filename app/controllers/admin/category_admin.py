@@ -20,3 +20,10 @@ async def create_category(data: CategoryCreate, collection):
     )
 
     return serialize(new_category)
+async def get_all_categories(collection):
+    categories = []
+    
+    async for category in collection.find():
+        categories.append(serialize(category))
+
+    return categories

@@ -6,6 +6,12 @@ from dependencies import get_place_collection
 
 router = APIRouter(prefix="/places", tags=["Admin - Places"])
 
+@router.get("/")
+async def get_all_places(
+    collection=Depends(get_place_collection)
+):
+    return await admin_ctrl.get_places(collection)
+
 @router.post("/create", response_model=dict)
 async def create_place(
     data: PlaceCreate,

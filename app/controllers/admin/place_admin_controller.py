@@ -20,7 +20,13 @@ def serialize(place):
         "thumbnail": (BASE_IMAGE_URL or "") + place["thumbnail"] if place.get("thumbnail") else None,
         "created_at": place["created_at"]
     }
-
+async def get_places(collection):
+    places = []
+    
+    async for place in collection.find():
+        places.append(serialize(place))
+    
+    return places
 
 async def create_place(data: PlaceCreate, collection):
     place = {
