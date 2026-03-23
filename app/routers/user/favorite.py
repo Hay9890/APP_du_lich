@@ -9,7 +9,7 @@ from app.models.favorite_model import FavoriteCreate
 router = APIRouter(prefix="/user", tags=["User Favorites"])
 
 
-# ADD FAVORITE
+
 @router.post("/favorites")
 async def add_favorite(
     data: FavoriteCreate,
@@ -17,8 +17,6 @@ async def add_favorite(
 ):
     return await Add_favorite(data.user_id, data.place_id, collection)
 
-
-# REMOVE FAVORITE
 @router.delete("/delete")
 async def remove_favorite(
     data: FavoriteCreate,
@@ -27,7 +25,6 @@ async def remove_favorite(
     return await Remove_favorite(data.user_id, data.place_id, collection)
 
 
-# GET FAVORITES
 @router.get("/favorites/{user_id}")
 async def get_favorites(
     user_id: str,

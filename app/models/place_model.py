@@ -14,6 +14,7 @@ class PlaceUpdate(BaseModel):
     description: Optional[str] = None
     address: Optional[str] = None
     city: Optional[str] = None
+    category_id: Optional[str] = None   
     thumbnail: Optional[str] = None
 class Placeresponse(PlaceCreate):
     id: str

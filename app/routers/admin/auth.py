@@ -3,7 +3,7 @@ from app.models.admin import AdminLogin, AdminResponse
 from app.controllers.admin.admin_auth_controller import admin_login_logic
 from dependencies import get_user_collection
 
-router = APIRouter(prefix="/admin/auth", tags=["Admin Auth"])
+router = APIRouter(prefix="/auth", tags=["Admin Auth"])
 
 
 @router.post("/login", response_model=AdminResponse)

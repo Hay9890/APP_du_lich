@@ -17,3 +17,5 @@ def get_category_collection():
     return db["categories"]
 def get_favorite_collection():
     return db.favorites
+def get_itinerary_collection():
+    return db.itineraries   
